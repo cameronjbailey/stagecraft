@@ -1,10 +1,10 @@
 name: Playwright Tests
 on:
-  push:
-    branches:
-      - main
-      - master
-      - playwright-setup
+  # push:
+  #   branches:
+  #     - main
+  #     - master
+  #     - playwright-setup
   pull_request:
     branches:
       - main
