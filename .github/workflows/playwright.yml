@@ -10,6 +10,17 @@ on:
       - main
       - master
       - playwright-setup
+  workflow_dispatch:
+    inputs:
+      browser:
+        type: choice
+        description: Which browser to test
+        required: true
+        options:
+          - firefox
+          - chromium
+          - webkit
+
 jobs:
   test:
     timeout-minutes: 60
@@ -24,7 +35,7 @@ jobs:
     - name: Install Playwright Browsers
       run: npx playwright install --with-deps
     - name: Run Playwright tests
-      run: npx playwright test
+      run: npx playwright test --project ${{ github.event.inputs.browser }}
     - uses: actions/upload-artifact@v4
       if: ${{ !cancelled() }}
       with:
